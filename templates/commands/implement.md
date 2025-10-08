@@ -16,30 +16,34 @@ $ARGUMENTS
 2. Load and analyze the implementation context:
    - **REQUIRED**: Read tasks.md for the complete task list and execution plan
    - **REQUIRED**: Read plan.md for tech stack, architecture, and file structure
+   - **IF EXISTS**: Read idea.md for implementation roadmap and stage breakdown
    - **IF EXISTS**: Read data-model.md for entities and relationships
    - **IF EXISTS**: Read contracts/ for API specifications and test requirements
    - **IF EXISTS**: Read research.md for technical decisions and constraints
    - **IF EXISTS**: Read quickstart.md for integration scenarios
 
 3. Parse tasks.md structure and extract:
-   - **Task phases**: Setup, Tests, Core, Integration, Polish
+   - **Task organization**: Phase-based (X.1→X.2→X.3→X.4) or Category-based (Setup→Tests→Core→Integration→Polish)
    - **Task dependencies**: Sequential vs parallel execution rules
    - **Task details**: ID, description, file paths, parallel markers [P]
    - **Execution flow**: Order and dependency requirements
 
 4. Execute implementation following the task plan:
-   - **Phase-by-phase execution**: Complete each phase before moving to the next
-   - **Respect dependencies**: Run sequential tasks in order, parallel tasks [P] can run together  
-   - **Follow TDD approach**: Execute test tasks before their corresponding implementation tasks
-   - **File-based coordination**: Tasks affecting the same files must run sequentially
-   - **Validation checkpoints**: Verify each phase completion before proceeding
+   - **Phase-by-phase execution**: Complete each phase before moving to next
+   - **Sub-phase ordering**: For phase-based, execute X.1→X.2→X.3→X.4 sequentially
+   - **Respect dependencies**: Run sequential tasks in order, parallel tasks [P] together
+   - **Follow TDD approach**: X.1 tests must fail before X.2 implementation
+   - **File-based coordination**: Same file tasks run sequentially
+   - **Validation checkpoints**: Verify sub-phase completion before proceeding
 
 5. Implementation execution rules:
-   - **Setup first**: Initialize project structure, dependencies, configuration
-   - **Tests before code**: If you need to write tests for contracts, entities, and integration scenarios
-   - **Core development**: Implement models, services, CLI commands, endpoints
-   - **Integration work**: Database connections, middleware, logging, external services
-   - **Polish and validation**: Unit tests, performance optimization, documentation
+   - **Phase-based** (when idea.md stages exist):
+     * X.1 - TDD: Write failing tests (contracts, integration)
+     * X.2 - Implementation: Core logic (models, services, endpoints)
+     * X.3 - Verification: Run tests, ensure pass, fix failures
+     * X.4 - Polish: Refactor, optimize, docs
+   - **Category-based** (fallback):
+     * Setup → Tests → Core → Integration → Polish
 
 6. Progress tracking and error handling:
    - Report progress after each completed task

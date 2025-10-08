@@ -14,6 +14,7 @@ $ARGUMENTS
 1. Run `{SCRIPT}` from repo root and parse FEATURE_DIR and AVAILABLE_DOCS list. All paths must be absolute.
 2. Load and analyze available design documents:
    - Always read plan.md for tech stack and libraries
+   - IF EXISTS: Read idea.md for implementation strategy and flow diagrams
    - IF EXISTS: Read data-model.md for entities
    - IF EXISTS: Read contracts/ for API endpoints
    - IF EXISTS: Read research.md for technical decisions
@@ -22,6 +23,7 @@ $ARGUMENTS
    Note: Not all projects have all documents. For example:
    - CLI tools might not have contracts/
    - Simple libraries might not need data-model.md
+   - idea.md provides the high-level implementation roadmap
    - Generate tasks based on what's available
 
 3. Generate tasks following the template:
@@ -29,7 +31,7 @@ $ARGUMENTS
    - Replace example tasks with actual tasks based on:
      * **Setup tasks**: Project init, dependencies, linting
      * **Test tasks [P]**: One per contract, one per integration scenario
-     * **Core tasks**: One per entity, service, CLI command, endpoint
+     * **Core tasks**: One per entity, service, CLI command, endpoint (use idea.md flow as guide)
      * **Integration tasks**: DB connections, middleware, logging
      * **Polish tasks [P]**: Unit tests, performance, docs
 
