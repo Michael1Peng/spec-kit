@@ -156,14 +156,14 @@ directories captured above]
 
 1. **双源提取实体模型** → `data-model.md`:
    - **源A (spec.md)**: 功能需求 → 实体/字段/关系、验收标准 → 验证规则、状态描述 → 状态机
-   - **源B (代码库)**: Glob `src/**/*.{js,ts}` → Search `class|interface|type...` → Read 模型文件分析现有设计模式
+   - **源B (代码库)**: Glob `src/**/*.{js,ts}` → Grep `class|interface|type` → Read 模型文件分析现有设计模式
    - **合并策略**: 优先复用现有实体/命名/验证模式，新增字段遵循仓库惯例
    - **推理标注**: 说明设计决策依据（如: 选择 `isActive` 字段因现有代码已使用此模式，见 `workspace.js:12`）
    - **来源标注**: 每个实体注明出处（格式: `spec.md L15-23 + src/models/workspace.js:9-30`）
 
 2. **双源生成接口契约** → `/contracts/`:
    - **源A (spec.md)**: 用户操作 → 端点/命令、参数 → 请求体、场景 → 响应/错误码
-   - **源B (代码库)**: Glob `src/**/api/**/*.{js,ts}` 或 `src/commands/**/*.js` → Search 路由/命令定义 → Read 分析请求/响应结构
+   - **源B (代码库)**: Glob `src/**/api/**/*.{js,ts}` 或 `src/commands/**/*.js` → Grep 路由/命令定义 → Read 分析请求/响应结构
    - **合并策略**: 沿用现有 URL/命名模式、错误码定义、响应格式
    - **推理标注**: 说明接口设计理由（如: 使用 POST `/api/workspace/update` 因需修改资源且符合现有 RESTful 约定）
    - **输出格式**: OpenAPI 3.0 (Web) 或 Commander schema (CLI)，含请求/响应示例
@@ -174,11 +174,20 @@ directories captured above]
    - Assert request/response schemas
    - Tests must fail (no implementation yet)
 
-4. **Extract test scenarios** from user stories:
+4. **交互式分析生成实现思路** → `idea.md`:
+   - **源A (spec.md)**: 核心需求 → 功能点列表、用户故事 → 操作流程
+   - **源B (代码库)**: Grep 相似功能关键词 → Read 已有实现分析技术路线
+   - **源C (data-model.md + contracts/)**: 数据结构 + API 定义
+   - **交互流程**: 逐个决策点提供 2-3 个选项 → 说明推理依据和优劣 → WAIT 用户选择 → 立即写入 → 下一个决策点
+   - **推理标注**: 每个决策标注依据来源和推理过程（如: 选择方案B因 spec.md:L45 要求 X 且 src/service.ts:L30 已有类似模式）
+   - **输出格式**: 极简的描述: 实现需求的思路 + 实现路线 + ASCII流程图 + 集成点（复用/新增/修改模块）
+   - **来源标注**: 每个决策注明出处（格式: `spec.md L45 + src/service.ts:30 + research.md 技术选型`）
+
+5. **Extract test scenarios** from user stories:
    - Each story → integration test scenario
    - Quickstart test = story validation steps
 
-5. **Update agent file incrementally** (O(1) operation):
+6. **Update agent file incrementally** (O(1) operation):
    - Run `{SCRIPT}`
      **IMPORTANT**: Execute it exactly as specified above. Do not add or remove any arguments.
    - If exists: Add only NEW tech from current plan
