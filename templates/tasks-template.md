@@ -9,28 +9,35 @@
    → If not found: ERROR "No implementation plan found"
    → Extract: tech stack, libraries, structure
 2. Load optional design documents:
-   → idea.md: Extract implementation roadmap → guide task sequence
+   → idea.md: Extract implementation stages/phases → primary task grouping
    → data-model.md: Extract entities → model tasks
    → contracts/: Each file → contract test task
    → research.md: Extract decisions → setup tasks
-3. Generate tasks by category:
-   → Setup: project init, dependencies, linting
-   → Tests: contract tests, integration tests
-   → Core: models, services, CLI commands
-   → Integration: DB, middleware, logging
-   → Polish: unit tests, performance, docs
-4. Apply task rules:
+3. **Determine task organization strategy**:
+   IF idea.md exists AND contains stages/phases:
+     → Use PHASE-BASED TDD structure (each phase: TDD → Impl → Verify → Polish)
+   ELSE:
+     → Use CATEGORY-BASED structure (Setup → Tests → Core → Integration → Polish)
+4. Generate tasks by chosen strategy:
+   **Phase-based (preferred)**:
+     → Phase N.1: TDD tests (must fail)
+     → Phase N.2: Core implementation
+     → Phase N.3: Verify tests pass
+     → Phase N.4: Polish & docs
+   **Category-based (fallback)**:
+     → Setup, Tests, Core, Integration, Polish
+5. Apply task rules:
    → Different files = mark [P] for parallel
    → Same file = sequential (no [P])
    → Tests before implementation (TDD)
-5. Number tasks sequentially (T001, T002...)
-6. Generate dependency graph
-7. Create parallel execution examples
-8. Validate task completeness:
+6. Number tasks sequentially (T001, T002...)
+7. Generate dependency graph
+8. Create parallel execution examples
+9. Validate task completeness:
    → All contracts have tests?
    → All entities have models?
    → All endpoints implemented?
-9. Return: SUCCESS (tasks ready for execution)
+10. Return: SUCCESS (tasks ready for execution)
 ```
 
 ## Format: `[ID] [P?] Description`
@@ -43,54 +50,82 @@
 - **Mobile**: `api/src/`, `ios/src/` or `android/src/`
 - Paths shown below assume single project - adjust based on plan.md structure
 
-## Phase 3.1: Setup
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+<!-- Replace Content below only -->
 
-## Phase 3.2: Tests First (TDD) ⚠️ MUST COMPLETE BEFORE 3.3
-**CRITICAL: These tests MUST be written and MUST FAIL before ANY implementation**
-- [ ] T004 [P] Contract test POST /api/users in tests/contract/test_users_post.py
-- [ ] T005 [P] Contract test GET /api/users/{id} in tests/contract/test_users_get.py
-- [ ] T006 [P] Integration test user registration in tests/integration/test_registration.py
-- [ ] T007 [P] Integration test auth flow in tests/integration/test_auth.py
+## 阶段0: 环境准备
+### 0.1 TDD 测试编写
+- [ ] T001 [P] Setup tests in tests/setup/
 
-## Phase 3.3: Core Implementation (ONLY after tests are failing)
-- [ ] T008 [P] User model in src/models/user.py
-- [ ] T009 [P] UserService CRUD in src/services/user_service.py
-- [ ] T010 [P] CLI --create-user in src/cli/user_commands.py
-- [ ] T011 POST /api/users endpoint
-- [ ] T012 GET /api/users/{id} endpoint
-- [ ] T013 Input validation
-- [ ] T014 Error handling and logging
+### 0.2 核心实现
+- [ ] T002 Create project structure
+- [ ] T003 Initialize dependencies
+- [ ] T004 [P] Configure tooling
 
-## Phase 3.4: Integration
-- [ ] T015 Connect UserService to DB
-- [ ] T016 Auth middleware
-- [ ] T017 Request/response logging
-- [ ] T018 CORS and security headers
+### 0.3 验证测试通过
+- [ ] T005 Verify setup complete
 
-## Phase 3.5: Polish
-- [ ] T019 [P] Unit tests for validation in tests/unit/test_validation.py
-- [ ] T020 Performance tests (<200ms)
-- [ ] T021 [P] Update docs/api.md
-- [ ] T022 Remove duplication
-- [ ] T023 Run manual-testing.md
+### 0.4 优化与文档
+- [ ] T006 [P] Document setup
+
+---
+
+## 阶段1: [阶段名称]
+### 1.1 TDD 测试编写 ⚠️ 必须失败
+- [ ] T007 [P] Contract test POST /api/users in tests/contract/test_users_post.py
+- [ ] T008 [P] Contract test GET /api/users/{id} in tests/contract/test_users_get.py
+- [ ] T009 [P] Integration test registration in tests/integration/test_registration.py
+
+### 1.2 核心实现
+- [ ] T010 [P] User model in src/models/user.py
+- [ ] T011 [P] UserService CRUD in src/services/user_service.py
+- [ ] T012 POST /api/users endpoint
+- [ ] T013 GET /api/users/{id} endpoint
+- [ ] T014 Input validation
+
+### 1.3 验证测试通过
+- [ ] T015 Run tests T007-T009, verify pass
+- [ ] T016 Fix failing tests if any
+
+### 1.4 优化与文档
+- [ ] T017 [P] Refactor duplicates
+- [ ] T018 [P] Update docs/api.md
+
+---
+
+## 阶段2: [阶段名称]
+### 2.1 TDD 测试编写
+- [ ] T019 [P] Auth tests in tests/integration/test_auth.py
+
+### 2.2 核心实现
+- [ ] T020 Auth middleware
+- [ ] T021 Error handling and logging
+
+### 2.3 验证测试通过
+- [ ] T022 Verify T019 passes
+
+### 2.4 优化与文档
+- [ ] T023 Performance tests (<200ms)
+- [ ] T024 [P] Update docs
 
 ## Dependencies
-- Tests (T004-T007) before implementation (T008-T014)
-- T008 blocks T009, T015
-- T016 blocks T018
-- Implementation before polish (T019-T023)
+- Each phase: X.1 → X.2 → X.3 → X.4
+- Tests before implementation
+- Implementation before verification
+- Verification before polish
 
 ## Parallel Example
 ```
-# Launch T004-T007 together:
+# Phase 1.1 - Launch T007-T009 together:
 Task: "Contract test POST /api/users in tests/contract/test_users_post.py"
 Task: "Contract test GET /api/users/{id} in tests/contract/test_users_get.py"
 Task: "Integration test registration in tests/integration/test_registration.py"
-Task: "Integration test auth in tests/integration/test_auth.py"
+
+# Phase 1.2 - Launch T010-T011 together:
+Task: "User model in src/models/user.py"
+Task: "UserService CRUD in src/services/user_service.py"
 ```
+
+<!-- Replace Content above only -->
 
 ## Notes
 - [P] tasks = different files, no dependencies
@@ -99,28 +134,26 @@ Task: "Integration test auth in tests/integration/test_auth.py"
 - Avoid: vague tasks, same file conflicts
 
 ## Task Generation Rules
-*Applied during main() execution*
 
-0. **From Implementation Roadmap (idea.md)**:
-   - Extract flow diagrams → determine task sequence
-   - Identify decision points → create decision tasks
-   - Use implementation strategy → guide task breakdown
+0. **From idea.md stages**:
+   - Extract stages → map to phases
+   - Each stage → 4 sub-phases (TDD/Impl/Verify/Polish)
+   - Use stage goals → define phase tasks
 
 1. **From Contracts**:
-   - Each contract file → contract test task [P]
-   - Each endpoint → implementation task
+   - Each contract → test task in X.1 [P]
+   - Each endpoint → impl task in X.2
 
 2. **From Data Model**:
-   - Each entity → model creation task [P]
-   - Relationships → service layer tasks
+   - Each entity → model task in X.2 [P]
+   - Relationships → service tasks
 
 3. **From User Stories**:
-   - Each story → integration test [P]
-   - Quickstart scenarios → validation tasks
+   - Each story → integration test in X.1 [P]
+   - Quickstart → validation in X.3
 
-4. **Ordering**:
-   - Setup → Tests → Models → Services → Endpoints → Polish
-   - Follow idea.md flow sequence if available
+4. **Phase ordering**:
+   - Each phase: X.1 → X.2 → X.3 → X.4
    - Dependencies block parallel execution
 
 ## Validation Checklist

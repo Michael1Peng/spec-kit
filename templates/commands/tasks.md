@@ -26,36 +26,45 @@ $ARGUMENTS
    - idea.md provides the high-level implementation roadmap
    - Generate tasks based on what's available
 
-3. Generate tasks following the template:
-   - Use `/templates/tasks-template.md` as the base
-   - Replace example tasks with actual tasks based on:
-     * **Setup tasks**: Project init, dependencies, linting
-     * **Test tasks [P]**: One per contract, one per integration scenario
-     * **Core tasks**: One per entity, service, CLI command, endpoint (use idea.md flow as guide)
-     * **Integration tasks**: DB connections, middleware, logging
-     * **Polish tasks [P]**: Unit tests, performance, docs
+3. **Determine task structure strategy**:
+   - IF idea.md exists AND contains stages/phases:
+     * Use PHASE-BASED TDD structure
+     * Map each stage to phase with 4 sub-phases: X.1 (TDD) → X.2 (Impl) → X.3 (Verify) → X.4 (Polish)
+   - ELSE:
+     * Use CATEGORY-BASED structure (Setup → Tests → Core → Integration → Polish)
 
-4. Task generation rules:
-   - Each contract file → contract test task marked [P]
-   - Each entity in data-model → model creation task marked [P]
-   - Each endpoint → implementation task (not parallel if shared files)
-   - Each user story → integration test marked [P]
-   - Different files = can be parallel [P]
-   - Same file = sequential (no [P])
+4. Generate tasks following the template:
+   - Copy `.specify/templates/tasks-template.md` to FEATURE_DIR/tasks.md
+   - **IMPORTANT**: Only replace content between `<!-- Replace Content below only -->` and `<!-- Replace Content above only -->` markers
+   - Keep all other sections unchanged (Execution Flow, Format, Path Conventions, Notes, Task Generation Rules, Validation Checklist)
+   - Replace example phases with actual phases based on:
+     * **Phase-based** (when idea.md has stages):
+       - Phase X.1: TDD tests (must fail) - contracts, integration tests [P]
+       - Phase X.2: Core implementation - entities, services, endpoints
+       - Phase X.3: Verify tests pass - run test suite, fix failures
+       - Phase X.4: Polish - refactor, optimize, docs [P]
+     * **Category-based** (fallback):
+       - Setup, Tests, Core, Integration, Polish
 
-5. Order tasks by dependencies:
-   - Setup before everything
-   - Tests before implementation (TDD)
-   - Models before services
-   - Services before endpoints
-   - Core before integration
-   - Everything before polish
+5. Task generation rules:
+   - Each contract → test in X.1 [P]
+   - Each entity → model in X.2 [P]
+   - Each endpoint → impl in X.2
+   - Each user story → test in X.1 [P]
+   - Different files = [P]
+   - Same file = sequential
 
-6. Include parallel execution examples:
+6. Order tasks by dependencies:
+   - Each phase: X.1 → X.2 → X.3 → X.4
+   - Tests before implementation
+   - Implementation before verification
+   - Verification before polish
+
+7. Include parallel execution examples:
    - Group [P] tasks that can run together
    - Show actual Task agent commands
 
-7. Create FEATURE_DIR/tasks.md with:
+8. Create FEATURE_DIR/tasks.md with:
    - Correct feature name from implementation plan
    - Numbered tasks (T001, T002, etc.)
    - Clear file paths for each task
