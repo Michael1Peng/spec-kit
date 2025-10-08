@@ -23,18 +23,20 @@ Given the implementation details provided as an argument, do this:
 
 3. Read the constitution at `/memory/constitution.md` to understand constitutional requirements.
 
-4. Execute the implementation plan template:
+4. Execute the implementation plan template，**即问即写**分阶段交互模式:
    - Load `/templates/plan-template.md` (already copied to IMPL_PLAN path)
    - Set Input path to FEATURE_SPEC
-   - Run the Execution Flow (main) function steps 1-9
-   - The template is self-contained and executable
-   - Follow error handling and gate checks as specified
-   - Let the template guide artifact generation in $SPECS_DIR:
-     * Phase 0 generates research.md
-     * Phase 1 generates data-model.md, contracts/, quickstart.md
-     * Phase 2 generates tasks.md
-   - Incorporate user-provided details from arguments into Technical Context: {ARGS}
-   - Update Progress Tracking as you complete each phase
+   - 分7个阶段执行，每阶段即问即写:
+     * 阶段1: 提问Technical Context（2-3项）→ 确认 → Write创建plan.md框架并填充 → 提供选项
+     * 阶段2: 提问Constitution Check项 → 确认 → Edit追加 → 提供选项
+     * 阶段3: 展示Project Structure选项 → 确认 → Edit追加 → 提供选项
+     * 阶段4: 提问Phase 0研究任务（2-3个）→ 确认 → Write创建research.md → 循环直到完成 → 提供选项
+     * 阶段5: 提问Phase 1设计（entities/contracts/quickstart分批）→ 确认 → Write对应md文件 → 循环 → 提供选项
+     * 阶段6: 展示Phase 2任务规划方法 → 确认 → Edit追加到plan.md → 提供选项
+     * 阶段7: 展示Progress Tracking → Edit更新 → 完成
+   - Incorporate user-provided details: {ARGS}
+   - **关键**: 每2-3个问题就立即写入，不要等所有问题问完
+   - 选项: 确认写入/修改/跳过/查看文件/继续下批
 
 5. Verify execution completed:
    - Check Progress Tracking shows all phases complete
