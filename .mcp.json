@@ -4,6 +4,7 @@
       "type": "stdio",
       "command": "npx",
       "args": [
+        "-y",
         "@zilliz/claude-context-mcp@latest"
       ],
       "env": {}
