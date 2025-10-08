@@ -180,7 +180,7 @@ directories captured above]
    - **源C (data-model.md + contracts/)**: 数据结构 + API 定义
    - **交互流程**: 逐个决策点提供 2-3 个选项 → 说明推理依据和优劣 → WAIT 用户选择 → 立即写入 → 下一个决策点
    - **推理标注**: 每个决策标注依据来源和推理过程（如: 选择方案B因 spec.md:L45 要求 X 且 src/service.ts:L30 已有类似模式）
-   - **输出格式**: 极简的描述: 实现需求的思路 + 实现路线 + ASCII流程图 + 集成点（复用/新增/修改模块）
+   - **输出极简的描述**: 实现需求的思路 + 实现路线 + 改动前后的 ASCII流程图对比
    - **来源标注**: 每个决策注明出处（格式: `spec.md L45 + src/service.ts:30 + research.md 技术选型`）
 
 5. **Extract test scenarios** from user stories:
