@@ -1,7 +1,7 @@
 # Tasks: [FEATURE NAME]
 
 **Input**: Design documents from `/specs/[###-feature-name]/`
-**Prerequisites**: plan.md (required), research.md, data-model.md, contracts/
+**Prerequisites**: plan.md (required), idea.md, research.md, data-model.md, contracts/
 
 ## Execution Flow (main)
 ```
@@ -9,6 +9,7 @@
    → If not found: ERROR "No implementation plan found"
    → Extract: tech stack, libraries, structure
 2. Load optional design documents:
+   → idea.md: Extract implementation roadmap → guide task sequence
    → data-model.md: Extract entities → model tasks
    → contracts/: Each file → contract test task
    → research.md: Extract decisions → setup tasks
@@ -100,20 +101,26 @@ Task: "Integration test auth in tests/integration/test_auth.py"
 ## Task Generation Rules
 *Applied during main() execution*
 
+0. **From Implementation Roadmap (idea.md)**:
+   - Extract flow diagrams → determine task sequence
+   - Identify decision points → create decision tasks
+   - Use implementation strategy → guide task breakdown
+
 1. **From Contracts**:
    - Each contract file → contract test task [P]
    - Each endpoint → implementation task
-   
+
 2. **From Data Model**:
    - Each entity → model creation task [P]
    - Relationships → service layer tasks
-   
+
 3. **From User Stories**:
    - Each story → integration test [P]
    - Quickstart scenarios → validation tasks
 
 4. **Ordering**:
    - Setup → Tests → Models → Services → Endpoints → Polish
+   - Follow idea.md flow sequence if available
    - Dependencies block parallel execution
 
 ## Validation Checklist
