@@ -134,7 +134,7 @@ spec-kit-template-claude-sh-v0.2.0.zip
 ```python
 def download_template_from_github(ai_assistant, download_dir, script_type, ...):
     # 1. 获取最新 release 信息
-    api_url = "https://api.github.com/repos/github/spec-kit/releases/latest"
+    api_url = "https://api.github.com/repos/Michael1Peng/spec-kit/releases/latest"
 
     # 2. 查找匹配的资源文件
     pattern = f"spec-kit-template-{ai_assistant}-{script_type}"
