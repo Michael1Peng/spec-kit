@@ -138,9 +138,7 @@ directories captured above]
         - 替代方案: Other options considered
      c. WAIT for user selection
      d. User selects → Immediately Write/Edit research.md (append this decision)
-     e. Ask: 确认写入/修改/跳过/查看文件/继续下一项
-     f. WAIT for user confirmation
-     g. Continue to NEXT task
+     e. Continue to NEXT task
 
    IMPORTANT: Process ONE task at a time, write immediately after each decision
    ```
