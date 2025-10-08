@@ -120,7 +120,7 @@ directories captured above]
    - For each dependency → best practices task
    - For each integration → patterns task
 
-2. **Generate and dispatch research agents**:
+2. **Generate research task list**:
    ```
    For each unknown in Technical Context:
      Task: "Research {unknown} for {feature context}"
@@ -128,10 +128,28 @@ directories captured above]
      Task: "Find best practices for {tech} in {domain}"
    ```
 
-3. **Consolidate findings** in `research.md` using format:
+3. **逐项交互决策并写入**（每次只处理1个任务，即问即写）:
+   ```
+   For EACH research task (one at a time):
+     a. Research THIS task only (WebSearch/Task tools)
+     b. Present 2-3 options to user with:
+        - 推理依据: Why suitable for this context
+        - 优势/劣势: Pros and cons
+        - 替代方案: Other options considered
+     c. WAIT for user selection
+     d. User selects → Immediately Write/Edit research.md (append this decision)
+     e. Ask: 确认写入/修改/跳过/查看文件/继续下一项
+     f. WAIT for user confirmation
+     g. Continue to NEXT task
+
+   IMPORTANT: Process ONE task at a time, write immediately after each decision
+   ```
+
+4. **Output format** in `research.md` for each decision:
    - Decision: [what was chosen]
-   - Rationale: [why chosen]
-   - Alternatives considered: [what else evaluated]
+   - Rationale: [why chosen, include reasoning process]
+   - Alternatives considered: [what else evaluated and why rejected]
+   - Supporting Evidence: [research sources, docs, best practices]
 
 **Output**: research.md with all NEEDS CLARIFICATION resolved
 
