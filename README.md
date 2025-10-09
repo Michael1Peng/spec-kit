@@ -8,7 +8,7 @@
     <strong>An effort to allow organizations to focus on product scenarios rather than writing undifferentiated code with the help of Spec-Driven Development.</strong>
 </p>
 
-[![Release](https://github.com/github/spec-kit/actions/workflows/release.yml/badge.svg)](https://github.com/github/spec-kit/actions/workflows/release.yml)
+[![Release](https://github.com/Michael1Peng/spec-kit/actions/workflows/release.yml/badge.svg)](https://github.com/Michael1Peng/spec-kit/actions/workflows/release.yml)
 
 ---
 
@@ -64,7 +64,7 @@ Choose your preferred installation method:
 Install once and use everywhere:
 
 ```bash
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+uv tool install specify-cli --from git+https://github.com/Michael1Peng/spec-kit.git
 ```
 
 Then use the tool directly:
@@ -79,7 +79,7 @@ specify check
 Run directly without installing:
 
 ```bash
-uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME>
+uvx --from git+https://github.com/Michael1Peng/spec-kit.git specify init <PROJECT_NAME>
 ```
 
 **Benefits of persistent installation:**
@@ -591,7 +591,7 @@ rm gcm-linux_amd64.2.6.1.deb
 
 ## 💬 Support
 
-For support, please open a [GitHub issue](https://github.com/github/spec-kit/issues/new). We welcome bug reports, feature requests, and questions about using Spec-Driven Development.
+For support, please open a [GitHub issue](https://github.com/Michael1Peng/spec-kit/issues/new). We welcome bug reports, feature requests, and questions about using Spec-Driven Development.
 
 ## 🙏 Acknowledgements
 
