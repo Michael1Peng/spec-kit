@@ -12,8 +12,8 @@ fi
 
 VERSION="$1"
 
-# Remove 'v' prefix for Python versioning
-PYTHON_VERSION=${VERSION#v}
+# Remove tag prefix (michael-v) for Python versioning
+PYTHON_VERSION=${VERSION#michael-v}
 
 if [ -f "pyproject.toml" ]; then
   sed -i "s/version = \".*\"/version = \"$PYTHON_VERSION\"/" pyproject.toml

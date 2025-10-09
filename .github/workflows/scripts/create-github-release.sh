@@ -12,8 +12,8 @@ fi
 
 VERSION="$1"
 
-# Remove 'v' prefix from version for release title
-VERSION_NO_V=${VERSION#v}
+# Remove tag prefix (michael-v) from version for release title
+VERSION_NO_V=${VERSION#michael-v}
 
 gh release create "$VERSION" \
   .genreleases/spec-kit-template-copilot-sh-"$VERSION".zip \
