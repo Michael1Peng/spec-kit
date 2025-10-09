@@ -25,6 +25,7 @@ Given the implementation details provided as an argument, do this:
 
 4. Execute the implementation plan template，**即问即写**分阶段交互模式:
    - Load `/templates/plan-template.md` (already copied to IMPL_PLAN path)
+   - **IMPORTANT** 在创建和修改 IMPL_PLAN 文件时，必须保留模板中 "## Execution Flow (/plan command scope)" 部分的完整内容。这个执行流程是计划文件的核心指导框架，不能删除、省略或修改。
    - Set Input path to FEATURE_SPEC
    - 分7个阶段执行，每阶段即问即写:
      * 阶段1: 提问Technical Context（2-3项）→ 确认 → Write创建plan.md框架并填充 → 提供选项
