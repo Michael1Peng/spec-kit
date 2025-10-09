@@ -18,6 +18,7 @@ Given that feature description, do this:
 1. Run the script `{SCRIPT}` from repo root and parse its JSON output for BRANCH_NAME and SPEC_FILE. All file paths must be absolute.
   **IMPORTANT** You must only ever run this script once. The JSON is provided in the terminal as output - always refer to it to get the actual content you're looking for.
 2. Load `templates/spec-template.md` to understand required sections.
+  **IMPORTANT** 在创建和修改 SPEC_FILE 时，必须保留模板中 "## Execution Flow (main)" 和 "## ⚡ Quick Guidelines" 部分的完整内容。这个执行流程是规范文件的核心指导框架，不能删除、省略或修改。
 3. 以互动式的方式跟我反复沟通多轮，来明确这个思路的各个细节，尽可能清晰的来了解我的想法。这个互动式的过程应该是你给我提供选项、讲解每个选项的原因，让我来选择。
 4. 分析的时候应该输出推理的过程。推导的依据都是什么？相关的文档内容都是哪些？
 5. 分阶段填写 SPEC_FILE，**即问即写**循环模式：

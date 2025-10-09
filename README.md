@@ -8,7 +8,25 @@
     <strong>An effort to allow organizations to focus on product scenarios rather than writing undifferentiated code with the help of Spec-Driven Development.</strong>
 </p>
 
-[![Release](https://github.com/github/spec-kit/actions/workflows/release.yml/badge.svg)](https://github.com/github/spec-kit/actions/workflows/release.yml)
+[![Release](https://github.com/Michael1Peng/spec-kit/actions/workflows/release.yml/badge.svg)](https://github.com/Michael1Peng/spec-kit/actions/workflows/release.yml)
+
+---
+
+## 🔀 Fork 版本核心差异
+
+**问题**: 上游版本中，AI 容易一次性生成过多的 Spec 和 Plan 内容，与开发者预期偏差较大，而逐个调整这些内容成本高昂。
+
+**解决方案**: 本 Fork 版本将开发流程调整为**交互式决策模式**:
+
+- **AI 角色**: 发散性思考，穷举可能的选项和方案
+- **开发者角色**: 决策者，从 AI 提供的选项中选择最合适的方案
+- **核心优势**: 平衡了 AI 编码的发散性和人工使用 AI 的投入成本
+
+**主要改进**:
+- `/specify` 和 `/plan` 命令采用**即问即写循环模式**，每 2-3 个问题就立即写入文件
+- AI 提供选项表格（Option A/B/C + 原因说明），开发者选择后再继续
+- 保留模板中的执行流程框架，确保 AI 遵循正确的思考路径
+- 减少一次性生成大量内容后的返工成本
 
 ---
 
@@ -46,7 +64,7 @@ Choose your preferred installation method:
 Install once and use everywhere:
 
 ```bash
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+uv tool install specify-cli --from git+https://github.com/Michael1Peng/spec-kit.git
 ```
 
 Then use the tool directly:
@@ -61,7 +79,7 @@ specify check
 Run directly without installing:
 
 ```bash
-uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME>
+uvx --from git+https://github.com/Michael1Peng/spec-kit.git specify init <PROJECT_NAME>
 ```
 
 **Benefits of persistent installation:**
@@ -573,7 +591,7 @@ rm gcm-linux_amd64.2.6.1.deb
 
 ## 💬 Support
 
-For support, please open a [GitHub issue](https://github.com/github/spec-kit/issues/new). We welcome bug reports, feature requests, and questions about using Spec-Driven Development.
+For support, please open a [GitHub issue](https://github.com/Michael1Peng/spec-kit/issues/new). We welcome bug reports, feature requests, and questions about using Spec-Driven Development.
 
 ## 🙏 Acknowledgements
 

@@ -14,7 +14,7 @@ NEW_VERSION="$1"
 LAST_TAG="$2"
 
 # Get commits since last tag
-if [ "$LAST_TAG" = "v0.0.0" ]; then
+if [ "$LAST_TAG" = "michael-v0.0.0" ]; then
   # Check how many commits we have and use that as the limit
   COMMIT_COUNT=$(git rev-list --count HEAD)
   if [ "$COMMIT_COUNT" -gt 10 ]; then
