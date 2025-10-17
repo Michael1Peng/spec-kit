@@ -32,7 +32,7 @@ Given the implementation details provided as an argument, do this:
      * 阶段2: 提问Constitution Check项 → 确认 → Edit追加 → 提供选项
      * 阶段3: 展示Project Structure选项 → 确认 → Edit追加 → 提供选项
      * 阶段4: 提问Phase 0研究任务（2-3个）→ 确认 → Write创建research.md → 循环直到完成 → 提供选项
-     * 阶段5: 提问Phase 1设计（entities/contracts/quickstart分批）→ 确认 → Write对应md文件 → 循环 → 提供选项
+     * 阶段5: 提问Phase 1设计（entities/contracts/idea/quickstart分批）→ 确认 → Write对应md文件 → 循环 → 提供选项
      * 阶段6: 展示Phase 2任务规划方法 → 确认 → Edit追加到plan.md → 提供选项
      * 阶段7: 展示Progress Tracking → Edit更新 → 完成
    - Incorporate user-provided details: {ARGS}

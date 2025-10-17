@@ -151,7 +151,7 @@ directories captured above]
 
 **Output**: research.md with all NEEDS CLARIFICATION resolved
 
-## Phase 1: Design & Contracts
+## Phase 1: Design & Contracts & Implementation Ideas
 *Prerequisites: research.md complete*
 
 1. **双源提取实体模型** → `data-model.md`:
